@@ -1,0 +1,17 @@
+1. Compare FSM vs Behaviour Tree for this guard. What became easier? What 
+became harder? 
+I think to get the behaviour tree working in a basic way was alot more difficult as i got stuck on making the sure it doesn't get stuck on any states and that the transitions between work without using clumsy implementations. The fsm was very easy to get the basics working on. But i can really see the behaviour tree having many pros now that the basics are up and i have started to understand how to structure it. Getting an overview for example is much easier with this, and changing behaviour can also be much easier.
+
+
+2. The Navigate To Target node return Running while the guard is moving. What would 
+happen if it returned Success immediately instead? Describe the visual behaviour 
+you’d see. 
+The guard would likely stop moving almost immediately as it would move on to the next node (or restart sequence). It would become jittery and stuttering as it would keep repeating to the same point but only move very slightly. It would basically shuffle towards the player, which in an actual game would probably mean it never reaches the player. It running means that it is telling the tree it isn't there yet, while a success says that it is, so if it always says that it is there, when it is not, it wouldn't really work well.
+
+3. What did you put in the blackboard, and why does it belong there (vs inside one 
+node)? 
+I have self, target, haslineofsight, lastknownposition, forgettargetafter, timesincelastseen and patrolwaypoints. I put all of these on the blackboard since it is for the individual guard. Stuff like speed or such is on a node basis since the variable is more general, but this could also be put in the blackboard if you wanted to create different enemy types that were faster or such.
+
+4. If you were to scale this guard into a “real enemy,” what would you add next: more 
+sensors, more actions, more structure (subgraphs), or better movement? 
+I would add more sensors first of, as right now the player can kind of just run around the enemy fast and the enemy will lose sight of the player, which feels really weird. Together with this actions such as running to hide if going to a low hp would be really cool to add, this could also include better more ways of movement to allow for a more advanced level, perhaps places the enemy could jump over as shortcuts when chasing the player.
