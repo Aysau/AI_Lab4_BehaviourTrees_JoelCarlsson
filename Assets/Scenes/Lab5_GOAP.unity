@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 168756671}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.88, y: 0, z: -5.3}
+  m_LocalPosition: {x: -1.87, y: 0, z: -6.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -640,7 +640,13 @@ GameObject:
   - component: {fileID: 839855803}
   - component: {fileID: 839855802}
   - component: {fileID: 839855808}
-  - component: {fileID: 839855807}
+  - component: {fileID: 839855809}
+  - component: {fileID: 839855814}
+  - component: {fileID: 839855813}
+  - component: {fileID: 839855812}
+  - component: {fileID: 839855811}
+  - component: {fileID: 839855810}
+  - component: {fileID: 839855815}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -765,25 +771,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &839855807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839855801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bda2f81c27f48aa44a06335616bd8a64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  targetTag: Player
-  viewDistance: 10
-  viewAngleDegrees: 121.9
-  eyes: {fileID: 839855806}
-  occlusionMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &839855808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,49 +780,141 @@ MonoBehaviour:
   m_GameObject: {fileID: 839855801}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Script: {fileID: 11500000, guid: a63f67c0690564c48ae7b07e6035da77, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
-  m_Graph: {fileID: 8183766339861179490, guid: 57eb08b1a988ec746b6dcbaafc2860d9, type: 2}
-  m_BlackboardVariableOverridesList:
-  - rid: 964090635297226953
-  - rid: 964090635297227306
-  - rid: 964090635297227307
-  m_OriginalGraph: {fileID: 8183766339861179490, guid: 57eb08b1a988ec746b6dcbaafc2860d9, type: 2}
-  m_IsInitialised: 0
-  m_IsStarted: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 964090635297226953
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        m_Value: {fileID: 839855801}
-    - rid: 964090635297227306
-      type: {class: 'BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 10600295175726067114
-          m_Value1: 12729071096638811047
-        Name: PatrolWaypoints
-        m_Value:
-        - {fileID: 1148771534}
-        - {fileID: 168756671}
-        - {fileID: 1581715434}
-        - {fileID: 395013387}
-        - {fileID: 1912076737}
-    - rid: 964090635297227307
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 353322855870231078
-          m_Value1: 17104181539248002648
-        Name: Target
-        m_Value: {fileID: 0}
+  m_EditorClassIdentifier: '::'
+  sensors: {fileID: 839855815}
+  player: {fileID: 1384108352}
+  weaponPickup: {fileID: 2024527768}
+  patrolWaypoints:
+  - {fileID: 1148771535}
+  - {fileID: 168756672}
+  - {fileID: 1581715435}
+  - {fileID: 395013388}
+  - {fileID: 1912076738}
+  logPlans: 1
+  minSecondsBetweenReplans: 0.2
+--- !u!114 &839855809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839855801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f590cb5329b5e7745a7a2723e38e57fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoapDebugHUD
+  agent: {fileID: 839855808}
+  show: 1
+  screenOffset: {x: 10, y: 10}
+--- !u!114 &839855810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839855801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc794152ad5937c47b8e3e7c5d64e0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TagPlayerAction
+  actionName: Tag Player
+  cost: 1
+  preMask: 20
+  addMask: 64
+  delMask: 0
+--- !u!114 &839855811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839855801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a0df2eadf484242bdbb9f433bfbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickUpWeaponAction
+  actionName: Pick Up Weapon
+  cost: 1
+  preMask: 8
+  addMask: 4
+  delMask: 8
+--- !u!114 &839855812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839855801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e393c9301adb549aa320693034aa66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatrolAction
+  actionName: Patrol (One Step)
+  cost: 2
+  preMask: 0
+  addMask: 32
+  delMask: 32
+  arriveDistance: 0.7
+--- !u!114 &839855813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839855801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c80c435f02f7e43a9d46372200292f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveToWeaponAction
+  actionName: Move To Weapon
+  cost: 1
+  preMask: 2
+  addMask: 8
+  delMask: 16
+  arriveDistance: 0.7
+--- !u!114 &839855814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839855801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b27687b98cfc84cb54be97562892ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveToPlayerAction
+  actionName: Move To Player
+  cost: 1
+  preMask: 1
+  addMask: 16
+  delMask: 8
+  arriveDistance: 1.2
+--- !u!114 &839855815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839855801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f0d3bd2887b6a469baedb1d398bae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GuardSensorLab5
+  player: {fileID: 1384108352}
+  viewRange: 10
+  occluders:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  useLineOfSightRaycast: 1
 --- !u!1 &1020539921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,6 +1606,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1886690561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2024527767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2024527768}
+  m_Layer: 0
+  m_Name: WeaponPickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2024527768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024527767}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.33, y: -0, z: -7.58}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8783673245335453213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1606,3 +1716,4 @@ SceneRoots:
   - {fileID: 1384108352}
   - {fileID: 839855806}
   - {fileID: 1886690561}
+  - {fileID: 2024527768}
