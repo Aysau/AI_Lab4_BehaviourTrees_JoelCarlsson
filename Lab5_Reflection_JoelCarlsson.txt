@@ -1,0 +1,13 @@
+1. In your implementation, what are the nodes and edges in the search space? How is
+this similar/different to Lab 2?
+Lab 2 used grid cells while the goap uses something more akin to fact states. It has edges that are action changing facts compared to the movement between adjacent positions. The goap also had precondition, action costs and goal fact mask. These things are different compared to the geomtery/walkability, distance/terrain and just the goal of reaching the target position we had in lab 2.
+
+2. Give one example where your action model could “lie” (effects claim success but the
+world disagrees). What happens?
+A concrete example would be MoveToPlayerAction which adds AtPlayer as its addmask, but in reality the player might move away, be behind cover or be unreachable, which means the action can fail at runtime, for example losing line of sight.
+
+3. Which parts of your system are declarative vs procedural?
+Goapfact is declarative, so is state representation and the action models. As they define what is true not how. Stuff like CheckProcedural, OnEnter, Tick, Navmesh movement are all defining how an action gets executed in the world.
+
+4. When did your system replan, and why was that the correct moment?
+It replans at 3 important places, 1 if no plan exists, which is good because the agent has no intent and the world state might be different. 2 An action fails at runtime, which is goo because the assumptions no longer match the reality like mentioned above and continuing then would be wrong. 3. World facts have changed, most importantly if seesplayer is different, because chasing is more important than patrolling for example. Goap is goal driven not plan.
